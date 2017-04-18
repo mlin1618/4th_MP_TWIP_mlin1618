@@ -47,7 +47,9 @@ public class Main {
             data[i][3] -= Double.parseDouble(fr2Syntax) * 0.25;
             //Total
             data[i][1] = (data[i][2] + data[i][3])/2;
-            sc.next();
+            while(!sc.hasNextDouble()){
+                sc.next();
+            }
         }
         for(int i = 0; i < data.length; i++){
             System.out.println(data[i][0] + "\t"
