@@ -26,7 +26,7 @@ public class Main {
         */
 
         sc.nextLine();
-        for(int i = 0; i < 1; i++) {
+        for(int i = 0; i < 28; i++) {
             data[i][0] = sc.nextDouble();
             sc.useDelimiter("\t");
             String fr1A = sc.next();
@@ -47,6 +47,7 @@ public class Main {
             data[i][3] -= Double.parseDouble(fr2Syntax) * 0.25;
             //Total
             data[i][1] = (data[i][2] + data[i][3])/2;
+            sc.next();
         }
         for(int i = 0; i < data.length; i++){
             System.out.println(data[i][0] + "\t"
