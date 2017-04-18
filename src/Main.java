@@ -24,7 +24,7 @@ public class Main {
         /*
         secret number,
         */
-
+        //just delete #12
         sc.nextLine();
         for(int i = 0; i < 28; i++) {
             data[i][0] = sc.nextDouble();
