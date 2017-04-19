@@ -26,7 +26,8 @@ public class Main {
         */
         //just delete #12
         sc.nextLine();
-        for(int i = 0; i < 28; i++) {
+        for(double j = 0; j < 28; j++) {
+            int i = (int)j;
             data[i][0] = sc.nextDouble();
             sc.useDelimiter("\t");
             String fr1A = sc.next();
@@ -41,10 +42,12 @@ public class Main {
 
             //FR1
             data[i][2] += getPoints(fr1A) + getPoints(fr1B);
-            data[i][2] -= Double.parseDouble(fr1Syntax) * 0.25;
+            if(!fr1Syntax.isEmpty())
+                data[i][2] -= Double.parseDouble(fr1Syntax) * 0.25;
             //FR2
             data[i][3] += getPoints(fr2B) + getPoints(fr2B);
-            data[i][3] -= Double.parseDouble(fr2Syntax) * 0.25;
+            if(!fr2Syntax.isEmpty())
+                data[i][3] -= Double.parseDouble(fr2Syntax) * 0.25;
             //Total
             data[i][1] = (data[i][2] + data[i][3])/2;
             while(!sc.hasNextDouble()){
