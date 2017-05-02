@@ -25,7 +25,7 @@ public class Main {
         double[][] data = new double[14][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
         Scanner sc = new Scanner(new File("rawDataU6.txt"));
         sc.nextLine();
-        for(double j = 0; j < 4; j++){
+        for(double j = 0; j < 6; j++){
             int i = (int)(j/2);
             int c = 0;
             if(j % 2 != 0){
