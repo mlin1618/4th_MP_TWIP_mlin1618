@@ -11,25 +11,37 @@ public class Main {
     public static double getPoints(String s){
         Scanner sc = new Scanner(s);
         double d = 0;
-        while(sc.hasNext()){
+        for(int i = 0; i < s.length()-4; i++){
+            if(s.substring(i, i+1).equals("+")){
+                if(s.substring(i+2, i+3).equals(".") || s.substring(i+2, i+3).matches("\\d+")) {
+                    d += Double.parseDouble(s.substring(i + 2, i + 4).trim());
+                }
+            }
+        }
+
+        /*while(sc.hasNext()){
             if(sc.hasNextDouble()){
                 d += sc.nextDouble();
             }
             else{
                 sc.next();
             }
-        }
+        }*/
         return d;
     }
     public static void main(String[] args) throws IOException{
         double[][] data = new double[14][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
         Scanner sc = new Scanner(new File("rawDataU6.txt"));
+        sc.useDelimiter("\t");
         sc.nextLine();
-        for(double j = 0; j < 6; j++){
+        for(double j = 0; j < 7; j++){
             int i = (int)(j/2);
             int c = 0;
             if(j % 2 != 0){
                 c = 3;
+            }
+            while(!sc.next().matches("\\d+")){
+                sc.next();
             }
             data[i][0] = sc.nextDouble();
             sc.useDelimiter("\t");
@@ -42,13 +54,21 @@ public class Main {
             String fr2C = sc.next();
             String fr2Syntax = sc.next();
             sc.nextLine();
-
+            if(j==3){
+                SOP(getPoints(fr1A));
+                SOP(getPoints(fr1B));
+                SOP(getPoints(fr2A));
+                SOP(getPoints(fr2B));
+                SOP(getPoints(fr2C));
+                SOP(fr1Syntax);
+                SOP(fr2Syntax);
+            }
             //FR1
             data[i][3+c] += getPoints(fr1A) + getPoints(fr1B);
             if(!fr1Syntax.isEmpty())
                 data[i][3+c] -= Double.parseDouble(fr1Syntax) * 0.25;
             //FR2
-            data[i][4+c] += getPoints(fr2A) + getPoints(fr2B);
+            data[i][4+c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
             if(!fr2Syntax.isEmpty())
                 data[i][4+c] -= Double.parseDouble(fr2Syntax) * 0.25;
             //Total
