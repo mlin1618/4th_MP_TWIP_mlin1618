@@ -76,7 +76,7 @@ public class Main {
             data[i][1] = (data[i][2] + data[i][5])/2;
         }
         for(int i = 0; i < data.length; i++){
-            System.out.println(data[i][0] + "\t"
+            System.out.println(data[i][0]+1 + "\t"
                     + String.valueOf(data[i][1]) + "/19" + "\t"
                     + data[i][2] + "\t"
                     + data[i][5]);
