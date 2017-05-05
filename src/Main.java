@@ -30,11 +30,11 @@ public class Main {
         return d;
     }
     public static void main(String[] args) throws IOException{
-        double[][] data = new double[14][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
+        double[][] data = new double[28][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
         Scanner sc = new Scanner(new File("rawDataU6.txt"));
         sc.useDelimiter("\t");
         sc.nextLine();
-        for(int j = 0; j < 28; j++){
+        for(int j = 0; j < 56; j++){
             int i = (j/2);
             int c = 0;
             if(j % 2 != 0){
