@@ -34,8 +34,8 @@ public class Main {
         Scanner sc = new Scanner(new File("rawDataU6.txt"));
         sc.useDelimiter("\t");
         sc.nextLine();
-        for(double j = 0; j < 21; j++){
-            int i = (int)(j/2);
+        for(int j = 0; j < 28; j++){
+            int i = (j/2);
             int c = 0;
             if(j % 2 != 0){
                 c = 3;
@@ -45,12 +45,14 @@ public class Main {
             sc.next();
             String fr1A = sc.next();
             String fr1B = sc.next();
-            String fr1Syntax = sc.next();
+            String fr1Syntax = sc.next().trim();
             sc.next();
             String fr2A = sc.next();
             String fr2B = sc.next();
             String fr2C = sc.next();
-            String fr2Syntax = sc.next();
+            sc.useDelimiter("\t|\r");
+            String fr2Syntax = sc.next().trim();
+            sc.useDelimiter("\t");
             sc.nextLine();
             /*if(j==6){
                 SOP(getPoints(fr1A));
@@ -67,6 +69,7 @@ public class Main {
                 data[i][3+c] -= Double.parseDouble(fr1Syntax) * 0.25;
             //FR2
             data[i][4+c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
+            SOP(data[i][0] + " " + fr2Syntax);
             if(!fr2Syntax.isEmpty())
                 data[i][4+c] -= Double.parseDouble(fr2Syntax) * 0.25;
             //Total
