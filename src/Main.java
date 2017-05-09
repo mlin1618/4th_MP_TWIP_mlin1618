@@ -29,20 +29,23 @@ public class Main {
         }*/
         return d;
     }
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
+        TreeMap<Integer,String> names = new TreeMap<Integer,String>();
+        Scanner sc3 = new Scanner(new File("names.txt"));
         double[][] data = new double[28][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
-        for(int i = 0; i< data.length; i++){
+        boolean[] twoScores = new boolean[28];
+        for (int i = 0; i < data.length; i++) {
             data[i][0] = i;
         }
         int t = 0;
         Scanner sc2 = new Scanner(new File("rawDataU6.txt"));
         sc2.nextLine();
-        while(sc2.hasNext()){
-            if(sc2.hasNextInt()){
-                int x = sc2.nextInt()-1;
+        while (sc2.hasNext()) {
+            if (sc2.hasNextInt()) {
+                int x = sc2.nextInt() - 1;
                 sc2.useDelimiter("\t");
                 int c = 0;
-                if(t % 2 != 0){
+                if (t % 2 != 0) {
                     c = 3;
                 }
                 String fr1A = sc2.next();
@@ -58,26 +61,25 @@ public class Main {
                 sc2.nextLine();
 
                 //FR1
-                data[x][3+c] += getPoints(fr1A) + getPoints(fr1B);
-                if(!fr1Syntax.isEmpty())
-                    data[x][3+c] -= Double.parseDouble(fr1Syntax) * 0.25;
+                data[x][3 + c] += getPoints(fr1A) + getPoints(fr1B);
+                if (!fr1Syntax.isEmpty())
+                    data[x][3 + c] -= Double.parseDouble(fr1Syntax) * 0.25;
                 //FR2
-                data[x][4+c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
-                if(!fr2Syntax.isEmpty())
-                    data[x][4+c] -= Double.parseDouble(fr2Syntax) * 0.25;
+                data[x][4 + c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
+                if (!fr2Syntax.isEmpty())
+                    data[x][4 + c] -= Double.parseDouble(fr2Syntax) * 0.25;
                 //Total
-                data[x][2+c] = data[x][3+c] + data[x][4+c];
-            }
-            else{
+                data[x][2 + c] = data[x][3 + c] + data[x][4 + c];
+            } else {
                 sc2.nextLine();
             }
             t++;
         }
-        for(int i = 0; i < data.length; i++){
-            data[i][1] = (data[i][2] + data[i][5])/2;
+        for (int i = 0; i < data.length; i++) {
+            data[i][1] = (data[i][2] + data[i][5]) / 2;
         }
-        for(int i = 0; i < data.length; i++){
-            System.out.println(data[i][0]+1 + "\t"
+        for (int i = 0; i < data.length; i++) {
+            System.out.println(data[i][0] + 1 + "\t"
                     + String.valueOf(data[i][1]) + "/19" + "\t"
                     + data[i][2] + "\t"
                     + data[i][5]);
@@ -182,5 +184,5 @@ public class Main {
                                 + data[i][5]);
         }
     }*/
-
+    }
 }
