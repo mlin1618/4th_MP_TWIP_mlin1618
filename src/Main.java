@@ -31,16 +31,73 @@ public class Main {
     }
     public static void main(String[] args) throws IOException{
         double[][] data = new double[28][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
-        Scanner sc = new Scanner(new File("rawDataU6.txt"));
+        for(int i = 0; i< data.length; i++){
+            data[i][0] = i;
+        }
+        int t = 0;
+        Scanner sc2 = new Scanner(new File("rawDataU6.txt"));
+        sc2.nextLine();
+        while(sc2.hasNext()){
+            if(sc2.hasNextInt()){
+                int x = sc2.nextInt()-1;
+                sc2.useDelimiter("\t");
+                int c = 0;
+                if(t % 2 != 0){
+                    c = 3;
+                }
+                String fr1A = sc2.next();
+                String fr1B = sc2.next();
+                String fr1Syntax = sc2.next().trim();
+                sc2.next();
+                String fr2A = sc2.next();
+                String fr2B = sc2.next();
+                String fr2C = sc2.next();
+                sc2.useDelimiter("\t|\r");
+                String fr2Syntax = sc2.next().trim();
+                sc2.useDelimiter("\t");
+                sc2.nextLine();
+
+                //FR1
+                data[x][3+c] += getPoints(fr1A) + getPoints(fr1B);
+                if(!fr1Syntax.isEmpty())
+                    data[x][3+c] -= Double.parseDouble(fr1Syntax) * 0.25;
+                //FR2
+                data[x][4+c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
+                if(!fr2Syntax.isEmpty())
+                    data[x][4+c] -= Double.parseDouble(fr2Syntax) * 0.25;
+                //Total
+                data[x][2+c] = data[x][3+c] + data[x][4+c];
+            }
+            else{
+                sc2.nextLine();
+            }
+            t++;
+        }
+        for(int i = 0; i < data.length; i++){
+            data[i][1] = (data[i][2] + data[i][5])/2;
+        }
+        for(int i = 0; i < data.length; i++){
+            System.out.println(data[i][0]+1 + "\t"
+                    + String.valueOf(data[i][1]) + "/19" + "\t"
+                    + data[i][2] + "\t"
+                    + data[i][5]);
+        }
+
+        //System.out.println("\n \n \n");
+
+
+
+        /*Scanner sc = new Scanner(new File("rawDataU6.txt"));
         sc.useDelimiter("\t");
         sc.nextLine();
         for(int j = 0; j < 56; j++){
+
             int i = (j/2);
             int c = 0;
             if(j % 2 != 0){
                 c = 3;
             }
-            //data[i][0] = Double.parseDouble(sc.next());
+
             data[i][0] = i;
             sc.next();
             String fr1A = sc.next();
@@ -54,25 +111,16 @@ public class Main {
             String fr2Syntax = sc.next().trim();
             sc.useDelimiter("\t");
             sc.nextLine();
-            /*if(j==6){
-                SOP(getPoints(fr1A));
-                SOP(getPoints(fr1B));
-                SOP(getPoints(fr2A));
-                SOP(getPoints(fr2B));
-                SOP(getPoints(fr2C));
-                SOP(fr1Syntax);
-                SOP(fr2Syntax);
-            }*/
-            //FR1
+
+
             data[i][3+c] += getPoints(fr1A) + getPoints(fr1B);
             if(!fr1Syntax.isEmpty())
                 data[i][3+c] -= Double.parseDouble(fr1Syntax) * 0.25;
-            //FR2
+
             data[i][4+c] += getPoints(fr2A) + getPoints(fr2B) + getPoints(fr2C);
-            SOP(data[i][0] + " " + fr2Syntax);
             if(!fr2Syntax.isEmpty())
                 data[i][4+c] -= Double.parseDouble(fr2Syntax) * 0.25;
-            //Total
+
             data[i][2+c] = data[i][3+c] + data[i][4+c];
         }
         for(int i = 0; i < data.length; i++){
@@ -85,7 +133,7 @@ public class Main {
                     + data[i][5]);
         }
     }
-
+    */
 
     /*public static void main(String[] args) throws IOException{
         double[][] data  = new double[14][8]; //secret number, total avg, total 1, fr1, fr2, total 2, fr 1, fr 2
