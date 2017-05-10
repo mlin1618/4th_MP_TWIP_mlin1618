@@ -30,12 +30,24 @@ public class Main {
         return d;
     }
     public static void main(String[] args) throws IOException {
-        TreeMap<Integer,String> names = new TreeMap<Integer,String>();
+        TreeMap<String,Integer> names = new TreeMap<String,Integer>();
+        String[] namesAlphabeta = new String[28];
         Scanner sc3 = new Scanner(new File("names.txt"));
+        sc3.useDelimiter("\t|\n");
+        int m = 0;
+        while(sc3.hasNext()){
+            String s = sc3.next();
+            Integer x = Integer.parseInt(sc3.next());
+            names.put(s,x);
+            namesAlphabeta[m] = s;
+            m++;
+        }
+        Arrays.sort(namesAlphabeta);
+
         double[][] data = new double[28][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
         boolean[] twoScores = new boolean[28];
         for (int i = 0; i < data.length; i++) {
-            data[i][0] = i;
+            data[i][0] = i+1;
         }
         int t = 0;
         Scanner sc2 = new Scanner(new File("rawDataU6.txt"));
@@ -75,15 +87,29 @@ public class Main {
             }
             t++;
         }
+        //avg FR grade
         for (int i = 0; i < data.length; i++) {
             data[i][1] = (data[i][2] + data[i][5]) / 2;
         }
-        for (int i = 0; i < data.length; i++) {
-            System.out.println(data[i][0] + 1 + "\t"
+
+        //output
+        System.out.println("Name\t\tSecret Number\t\tAvg Total Grade\t\tFR Q1 Grade\t\tFR Q2 Grade");
+        for(int i = 0; i < namesAlphabeta.length; i++){
+            int j = names.get(namesAlphabeta[i])-1;
+            System.out.println(namesAlphabeta[i] + "\t"
+                + (int)data[j][0] + "\t"
                     + String.valueOf(data[i][1]) + "/19" + "\t"
                     + data[i][2] + "\t"
                     + data[i][5]);
         }
+
+        /*for (int i = 0; i < data.length; i++) {
+            System.out.println(names.get((int)(data[i][0])) + "\t"
+                    + (int)(data[i][0]) + "\t"
+                    + String.valueOf(data[i][1]) + "/19" + "\t"
+                    + data[i][2] + "\t"
+                    + data[i][5]);
+        }*/
 
         //System.out.println("\n \n \n");
 
