@@ -82,10 +82,11 @@ public class Main {
                     data[x][4 + c] -= Double.parseDouble(fr2Syntax) * 0.25;
                 //Total
                 data[x][2 + c] = data[x][3 + c] + data[x][4 + c];
+                t++;
             } else {
                 sc2.nextLine();
             }
-            t++;
+
         }
         //avg FR grade
         for (int i = 0; i < data.length; i++) {
@@ -98,18 +99,17 @@ public class Main {
             int j = names.get(namesAlphabeta[i])-1;
             System.out.println(namesAlphabeta[i] + "\t"
                 + (int)data[j][0] + "\t"
+                    + String.valueOf(data[j][1]) + "/19" + "\t"
+                    + data[j][2] + "\t"
+                    + data[j][5]);
+        }
+
+        for (int i = 0; i < data.length; i++) {
+            System.out.println((int)(data[i][0]) + "\t"
                     + String.valueOf(data[i][1]) + "/19" + "\t"
                     + data[i][2] + "\t"
                     + data[i][5]);
         }
-
-        /*for (int i = 0; i < data.length; i++) {
-            System.out.println(names.get((int)(data[i][0])) + "\t"
-                    + (int)(data[i][0]) + "\t"
-                    + String.valueOf(data[i][1]) + "/19" + "\t"
-                    + data[i][2] + "\t"
-                    + data[i][5]);
-        }*/
 
         //System.out.println("\n \n \n");
 
