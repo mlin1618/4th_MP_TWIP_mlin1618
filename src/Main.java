@@ -52,7 +52,7 @@ public class Main {
         Arrays.sort(namesAlphabeta);
 
         double[][] data = new double[28][8]; // 0secret number, 1total avg, 2total1, 3fr1, 4fr2, 5total2, 6fr1, 7fr2
-        boolean[] twoScores = new boolean[28];
+        int[] twoScores = new int[28];
         for (int i = 0; i < data.length; i++) {
             data[i][0] = i+1;
         }
@@ -67,6 +67,7 @@ public class Main {
                 if (t % 2 != 0) {
                     c = 3;
                 }
+                twoScores[x]++;
                 String fr1A = sc2.next();
                 String fr1B = sc2.next();
                 String fr1Syntax = sc2.next().trim();
@@ -96,7 +97,12 @@ public class Main {
         }
         //avg FR grade
         for (int i = 0; i < data.length; i++) {
-            data[i][1] = (data[i][2] + data[i][5]) / 2;
+            if(twoScores[i] == 2) {
+                data[i][1] = (data[i][2] + data[i][5]) / 2;
+            }
+            else if(twoScores[i] == 1){
+                data[i][1] = data[i][2] + data[i][5];
+            }
         }
 
         //output
@@ -112,8 +118,14 @@ public class Main {
             printSpaces(namesAlphabeta[i]);
             printSpaces(String.valueOf((int)data[j][0]));
             printSpaces(String.valueOf(data[j][1]) + "/19");
-            printSpaces(String.valueOf((data[j][3]+data[j][6])/2));
-            printSpaces(String.valueOf((data[j][4]+data[j][7])/2));
+
+            double fr1 = (data[j][3]+data[j][6]);
+            double fr2 = (data[j][4]+data[j][7]);
+            if(twoScores[j] == 2){
+                fr1 /= 2; fr2 /= 2;
+            }
+            printSpaces(String.valueOf(fr1));
+            printSpaces(String.valueOf(fr2));
 
             /*System.out.println(namesAlphabeta[i] + "\t"
                 + (int)data[j][0] + "\t"
