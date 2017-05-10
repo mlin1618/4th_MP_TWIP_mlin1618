@@ -29,9 +29,16 @@ public class Main {
         }*/
         return d;
     }
+    public static void printSpaces(String s){
+        System.out.print(s);
+        for(int i = 0; i < 20 - s.length(); i++){
+            System.out.print(" ");
+        }
+    }
     public static void main(String[] args) throws IOException {
         TreeMap<String,Integer> names = new TreeMap<String,Integer>();
         String[] namesAlphabeta = new String[28];
+        boolean[] twoGrades = new boolean[28];
         Scanner sc3 = new Scanner(new File("names.txt"));
         sc3.useDelimiter("\t|\n");
         int m = 0;
@@ -82,11 +89,10 @@ public class Main {
                     data[x][4 + c] -= Double.parseDouble(fr2Syntax) * 0.25;
                 //Total
                 data[x][2 + c] = data[x][3 + c] + data[x][4 + c];
-                t++;
             } else {
                 sc2.nextLine();
             }
-
+            t++;
         }
         //avg FR grade
         for (int i = 0; i < data.length; i++) {
@@ -94,22 +100,34 @@ public class Main {
         }
 
         //output
-        System.out.println("Name\t\tSecret Number\t\tAvg Total Grade\t\tFR Q1 Grade\t\tFR Q2 Grade");
+        printSpaces("Name");
+        printSpaces("Secret Number");
+        printSpaces("Avg Total Grade");
+        printSpaces("FR Q1 Grade");
+        printSpaces("FR Q2 Grade");
+        //System.out.println("Name\t\tSecret Number\t\tAvg Total Grade\t\tFR Q1 Grade\t\tFR Q2 Grade");
         for(int i = 0; i < namesAlphabeta.length; i++){
             int j = names.get(namesAlphabeta[i])-1;
-            System.out.println(namesAlphabeta[i] + "\t"
+            System.out.println("");
+            printSpaces(namesAlphabeta[i]);
+            printSpaces(String.valueOf((int)data[j][0]));
+            printSpaces(String.valueOf(data[j][1]) + "/19");
+            printSpaces(String.valueOf((data[j][3]+data[j][6])/2));
+            printSpaces(String.valueOf((data[j][4]+data[j][7])/2));
+
+            /*System.out.println(namesAlphabeta[i] + "\t"
                 + (int)data[j][0] + "\t"
                     + String.valueOf(data[j][1]) + "/19" + "\t"
-                    + data[j][2] + "\t"
-                    + data[j][5]);
+                    + (data[j][3]+data[j][6])/2 + "\t"
+                    + (data[j][4]+data[j][7])/2 );*/
         }
 
-        for (int i = 0; i < data.length; i++) {
+        /*for (int i = 0; i < data.length; i++) {
             System.out.println((int)(data[i][0]) + "\t"
                     + String.valueOf(data[i][1]) + "/19" + "\t"
                     + data[i][2] + "\t"
                     + data[i][5]);
-        }
+        }*/
 
         //System.out.println("\n \n \n");
 
